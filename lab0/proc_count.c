@@ -4,19 +4,6 @@
 #include <linux/seq_file.h>
 #include <linux/sched.h>
 
-// static int __init proc_count_init(void)
-// {
-// 	pr_info("proc_count: init\n");
-// 	return 0;
-// }
-
-// static void __exit proc_count_exit(void)
-// {
-// 	pr_info("proc_count: exit\n");
-// }
-
-
-
 
 //Define a pointer to a proc_dir_entry struct called entry. 
 //This will be used to create and remove the virtual file in the /proc filesystem.
@@ -26,14 +13,14 @@ static struct proc_dir_entry *entry;
 //This function is called when the virtual file is read. 
 static int proc_count(struct seq_file *m, void *v){
 	//It first prints "hello world" to the seq_file, 
-	seq_printf(m, "hello world\n");
 	struct task_struct *p;
 	int sqr_sum = 0;
 	//then iterates over each process in the system using the for_each_process macro. 
 	for_each_process(p) {
 		//For each process, it prints "hello world" to the seq_file. 
-		seq_printf(m, "hello world\n");
+		sqr_sum++;
 	}
+	seq_printf(m, sqr_sum);
 	//The function then returns 0 to indicate success.
 	return 0;
 }
@@ -47,7 +34,6 @@ static int __init proc_count_init(void)
 	entry = proc_create_single("count", 0, NULL, proc_count);
 	//Then, it prints "example: init" to the kernel log to indicate that the module has been initialized. 
 	//The function returns 0 to indicate success.
-	pr_info("example: init\n");
 	return 0;
 }
 
