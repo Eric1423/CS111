@@ -9,38 +9,23 @@
 //This will be used to create and remove the virtual file in the /proc filesystem.
 static struct proc_dir_entry *entry;
 
-//Define the example function, which takes a pointer to a seq_file struct and a void pointer. 
-//This function is called when the virtual file is read. 
+
 static int proc_count(struct seq_file *m, void *v){
-	//It first prints "hello world" to the seq_file, 
 	struct task_struct *p;
 	int process_count = 0;
-	//then iterates over each process in the system using the for_each_process macro. 
 	for_each_process(p) {
-		//For each process, it prints "hello world" to the seq_file. 
 		process_count++;
 	}
-	seq_printf(m, "Number of processes: %d\n", process_count);
-	//The function then returns 0 to indicate success.
+	seq_printf(m,rocess_count);
 	return 0;
 }
 
-//Called when the module is loaded into the kernel. 
 static int __init proc_count_init(void)
 {
-	//This function creates the virtual file "example_virtual_file" 
-	//in the /proc filesystem with a proc_create_single call, 
-	//using the example function as a callback for file reads.
 	entry = proc_create_single("count", 0, NULL, proc_count);
-	//Then, it prints "example: init" to the kernel log to indicate that the module has been initialized. 
-	//The function returns 0 to indicate success.
 	return 0;
 }
 
-//It is called when the module is unloaded from the kernel. 
-//This function removes the virtual file from the /proc filesystem 
-//using the proc_remove function and then prints "example: exit" to the kernel log 
-//to indicate that the module has been removed.
 static void __exit proc_count_exit(void)
 {
 	proc_remove(entry);
