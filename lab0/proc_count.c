@@ -16,7 +16,7 @@ static int proc_count(struct seq_file *m, void *v){
 	for_each_process(p) {
 		process_count++;
 	}
-	seq_printf(m,process_count);
+	seq_printf(m, "%d\n", process_count);	
 	return 0;
 }
 
@@ -29,6 +29,7 @@ static int __init proc_count_init(void)
 static void __exit proc_count_exit(void)
 {
 	proc_remove(entry);
+	pr_info("example: exit\n");
 }
 
 module_init(proc_count_init);
