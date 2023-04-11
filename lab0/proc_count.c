@@ -14,13 +14,13 @@ static struct proc_dir_entry *entry;
 static int proc_count(struct seq_file *m, void *v){
 	//It first prints "hello world" to the seq_file, 
 	struct task_struct *p;
-	int sqr_sum = 0;
+	int process_count = 0;
 	//then iterates over each process in the system using the for_each_process macro. 
 	for_each_process(p) {
 		//For each process, it prints "hello world" to the seq_file. 
-		sqr_sum++;
+		process_count++;
 	}
-	seq_printf(m, int(sqr_sum));
+	seq_printf(m, seq_printf(m, "Number of processes: %d\n", process_count););
 	//The function then returns 0 to indicate success.
 	return 0;
 }
