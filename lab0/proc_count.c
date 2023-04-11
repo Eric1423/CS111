@@ -20,7 +20,7 @@ static int proc_count(struct seq_file *m, void *v){
 		//For each process, it prints "hello world" to the seq_file. 
 		sqr_sum++;
 	}
-	seq_printf(m, sqr_sum);
+	seq_printf(m, int(sqr_sum));
 	//The function then returns 0 to indicate success.
 	return 0;
 }
