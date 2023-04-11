@@ -44,7 +44,7 @@ static int __init proc_count_init(void)
 	//This function creates the virtual file "example_virtual_file" 
 	//in the /proc filesystem with a proc_create_single call, 
 	//using the example function as a callback for file reads.
-	entry = proc_create_single("count", 0, NULL, example);
+	entry = proc_create_single("count", 0, NULL, proc_count);
 	//Then, it prints "example: init" to the kernel log to indicate that the module has been initialized. 
 	//The function returns 0 to indicate success.
 	pr_info("example: init\n");
