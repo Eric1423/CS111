@@ -29,7 +29,6 @@ static int __init proc_count_init(void)
 static void __exit proc_count_exit(void)
 {
 	proc_remove(entry);
-	pr_info("example: exit\n");
 }
 
 module_init(proc_count_init);
