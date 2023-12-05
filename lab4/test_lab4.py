@@ -1,12 +1,14 @@
+import datetime
 import os
 import subprocess
+import time
 import unittest
-from datetime import datetime
+
 class Lab4TestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.year = datetime.now().year
+        cls.year = 2021
         subprocess.run(['make'], capture_output=True)
         subprocess.run(['./ext2-create'], capture_output=True)
         p = subprocess.run(['dumpe2fs', 'cs111-base.img'], capture_output=True, text=True)
